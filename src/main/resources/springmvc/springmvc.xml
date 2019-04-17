@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.0.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 拦截某个mapping,不推荐使用 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="handlerInterceptor1"/>
+			</list>
+		</property>
+	</bean>
+	<bean class="cn.interceptor.HandlerInterceptor1"></bean> -->
+	<!-- 全局mapping拦截 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/> <!-- 表示拦截所有url包括子url -->
+			<mvc:exclude-mapping path="/index.jsp"/> <!-- 不拦截某个url，这里是登录页面 -->
+			<mvc:exclude-mapping path="/account/submitLogin.action"/> <!-- 不拦截某个url，这里是处理登录的链接 -->
+			<bean class="cn.zengzhaoshang.interceptor.LoginByPower"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 处理器Handler -->
+	<!-- <bean name="/ssm.action" class="cn.web.UserController"/>
+	<bean name="/ssm2.action" class="cn.web.UserController2"/> -->
+	<!-- <bean class="cn.web.UserController3"/> -->
+	
+	<!-- 静态资源的解析，包括js、css、img、jpg等，用restFul时需要配置这些解析 -->
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/font/" mapping="/font/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/img/" mapping="/img/**"/>
+	<mvc:resources location="/My97DatePicker/" mapping="/My97DatePicker/**"/>
+	
+	<!-- 新的注解映射器 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->
+	<!-- 新的注解适配器 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
+	<!-- 可以代替上面两个注解映射器的配置 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 启动类型转换器和校验器 -->
+	<!-- <mvc:annotation-driven conversion-service="conversionService" validator="validator"/> -->
+	<!-- 组件扫描控制器 --><!-- 包含了<context:annotation-config/>注解引人依赖标签 -->
+	<context:component-scan base-package="cn.zengzhaoshang.controller"/>
+	
+	<!-- 另一个处理器Handler -->
+	<!-- <bean id="uc2" class="cn.web.UserController2"/> -->
+	<!-- 非注解的处理器映射器 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> -->
+	<!-- 与handler合并的处理器映射器，都实现HandlerMapping接口 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/xxx.action">id的值</prop>
+				<prop key="/uc2.action">uc2</prop>
+			</props>
+		</property>
+	</bean> -->
+	<!-- 非注解的处理器适配器，要求控制器要实现Controller接口 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"> -->
+	<!-- 另一个处理器适配器，要求控制器要实现HttpRequestHandler接口 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/> -->
+	<!-- 视图解析器，要求要有jstl包-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsps/"/> <!-- 转发路径中可省前缀 -->
+		<property name="suffix" value=".jsp"/> <!-- 转发路径中可省后缀 -->
+	</bean>
+	<!-- 自定义参数绑定 -->
+	<!-- <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		转换器
+		<property name="converters">
+			<list>
+				<bean class="cn.web.converter.CustomDate2Converter"></bean>
+			</list>
+		</property>
+	</bean> -->
+	<!-- 校验器 -->
+	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
+		<property name="validationMessageSource" ref="messageSource"></property>
+	</bean> -->
+	<!-- 校验错误信息配置 -->
+	<!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		资源文件名
+		<property name="basenames">
+			<list>
+				<value>classpath:CustomValidationMessage</value>
+			</list>
+		</property>
+		资源文件编码格式
+		<property name="fileEncodings" value="utf-8"></property>
+		资源文件内容缓存时间，单位秒
+		<property name="cacheSeconds" value="120"></property>
+	</bean> -->
+	<!-- 全局异常处理器 -->
+	<bean class="cn.zengzhaoshang.exception.CustomAllExceptionResolver"></bean>
+	<!-- 文件上传 -->
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		设置上传最大尺寸
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean> -->	
+</beans>

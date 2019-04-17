@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd		
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+     <!-- Dao 原始dao开发模式 -->
+     <!-- <bean id="userDaoImpl" class="cn.dao.UserDaoImpl">
+     	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+     </bean> -->
+     <!-- Dao mapper开发模式  ，根据接口生成代理对象-->
+     <!-- <bean id="userMapperImpl" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     	mapperFactoryBean指定mapper接口
+     	<property name="mapperInterface" value="cn.dao.UserMapper"/>
+     	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+     </bean> -->
+     <!-- mapper的批量扫描 配置和注册，生成代理对象，扫描后id的值为mapper类名（首字母小写）-->
+     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+     	<!-- 指定扫描的包名，如果扫描多个包，包名之间用半角逗号分隔 -->
+     	<property name="basePackage" value="cn.zengzhaoshang.dao"/>
+     	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+     </bean>
+     
+</beans>

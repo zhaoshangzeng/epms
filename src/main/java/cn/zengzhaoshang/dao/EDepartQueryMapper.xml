@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zengzhaoshang.dao.EDepartQueryMapper">
+  <cache/>
+  <resultMap id="BaseResultMap" type="cn.zengzhaoshang.dto.EDepartCustom">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="dept_num" jdbcType="INTEGER" property="deptNum" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="dept_desc" jdbcType="VARCHAR" property="deptDesc" />
+    <result column="dept_top" jdbcType="CHAR" property="deptTop" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="dept_top_name" jdbcType="VARCHAR" property="deptTopName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	notop.`id`, notop.`dept_num`, notop.`dept_name`, notop.`dept_desc`, notop.`version`, 
+    top.`dept_name` AS `dept_top_name`, notop.`dept_top`
+    FROM e_depart notop, e_depart top
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    WHERE notop.`id` = #{id,jdbcType=CHAR} AND notop.`dept_top` = top.`id`
+  </select>
+  <select id="selectAll" parameterType="cn.zengzhaoshang.dto.PageBean" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE notop.`dept_top` = top.`id` ORDER BY notop.`dept_num` 
+    <if test="lc != null and ps != null">
+     LIMIT #{lc},#{ps}
+    </if>
+  </select>
+ </mapper>

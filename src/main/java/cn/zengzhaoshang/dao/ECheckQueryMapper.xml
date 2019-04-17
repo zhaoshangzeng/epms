@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zengzhaoshang.dao.ECheckQueryMapper">
+  <cache/>
+  <resultMap id="BaseResultMap" type="cn.zengzhaoshang.dto.ECheckCustom">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="staff_id" jdbcType="CHAR" property="staffId" />
+    <result column="check_date" jdbcType="DATE" property="checkDate" />
+    <result column="late_num" jdbcType="TINYINT" property="lateNum" />
+    <result column="early_num" jdbcType="TINYINT" property="earlyNum" />
+    <result column="absence_num" jdbcType="TINYINT" property="absenceNum" />
+    <result column="leave_num" jdbcType="TINYINT" property="leaveNum" />
+    <result column="trip_num" jdbcType="TINYINT" property="tripNum" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="job_num" jdbcType="VARCHAR" property="jobNum" />
+    <result column="name" jdbcType="VARCHAR" property="staffName" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+   c.`id`, `check_date`, `late_num`, `early_num`, `absence_num`, `leave_num`, 
+    `trip_num`, c.`version`, `job_num`, `name`, `sex`, `dept_name`, `job`, `staff_id`
+    FROM e_check c, e_staff s, e_depart d
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE c.`id` = #{id,jdbcType=CHAR} AND c.`staff_id` = s.`id` AND s.`dept_id` = d.`id`
+  </select>
+  <select id="selectByMonth" parameterType="Date" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE c.`check_date` = #{value,jdbcType=DATE} AND c.`staff_id` = s.`id` AND s.`dept_id` = d.`id`
+    ORDER BY `entry_date` DESC
+  </select>
+  <select id="selectByMonthAndPage" parameterType="ECheckQueryVo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    <where>
+	   	c.`staff_id` = s.`id` AND s.`dept_id` = d.`id`
+	   	<if test="month != null">
+	   	  AND c.`check_date` = #{month,jdbcType=DATE}
+	   	</if>
+    </where>
+    ORDER BY `entry_date` DESC
+    <if test="pageBean != null">
+   	  <if test="pageBean.lc != null and pageBean.ps != null">
+   		LIMIT #{pageBean.lc},#{pageBean.ps}
+   	  </if>
+   	</if>
+  </select>
+  <select id="selectRequire" parameterType="ECheckQueryVo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    <where>
+    	<if test="eCheckCustom != null">
+	    	<if test="eCheckCustom.checkDate != null">
+	    		and `check_date` = #{eCheckCustom.checkDate,jdbcType=DATE}
+	    	</if>
+	    	<if test="eCheckCustom.jobNum != null and eCheckCustom.jobNum != ''">
+	    		and `job_num` like '%${eCheckCustom.jobNum}%'
+	    	</if>
+	    	<if test="eCheckCustom.staffName != null and eCheckCustom.staffName != ''">
+	    		and `name` like '%${eCheckCustom.staffName}%'
+	    	</if>
+	    	<if test="eCheckCustom.deptName != null and eCheckCustom.deptName != ''">
+	    		and `dept_name` = #{eCheckCustom.deptName,jdbcType=VARCHAR}
+	    	</if>
+	    </if>
+    	AND c.`staff_id` = s.`id` AND s.`dept_id` = d.`id`
+     </where>
+    	ORDER BY `check_date` DESC, `entry_date` DESC 
+    	<if test="pageBean != null">
+    	  <if test="pageBean.lc != null and pageBean.ps != null">
+    		LIMIT #{pageBean.lc},#{pageBean.ps}
+    	  </if>
+    	</if>
+   </select>
+   <select id="countRequire" parameterType="ECheckQueryVo" resultType="int">
+    SELECT COUNT(*) FROM e_check c, e_staff s, e_depart d 
+    <where>
+    	<if test="eCheckCustom != null">
+	    	<if test="eCheckCustom.checkDate != null">
+	    		and `check_date` = #{eCheckCustom.checkDate,jdbcType=DATE}
+	    	</if>
+	    	<if test="eCheckCustom.jobNum != null and eCheckCustom.jobNum != ''">
+	    		and `job_num` like '%${eCheckCustom.jobNum}%'
+	    	</if>
+	    	<if test="eCheckCustom.staffName != null and eCheckCustom.staffName != ''">
+	    		and `name` like '%${eCheckCustom.staffName}%'
+	    	</if>
+	    	<if test="eCheckCustom.deptName != null and eCheckCustom.deptName != ''">
+	    		and `dept_name` = #{eCheckCustom.deptName,jdbcType=VARCHAR}
+	    	</if>
+	    </if>
+    	AND c.`staff_id` = s.`id` AND s.`dept_id` = d.`id`
+     </where>
+   </select>
+</mapper>

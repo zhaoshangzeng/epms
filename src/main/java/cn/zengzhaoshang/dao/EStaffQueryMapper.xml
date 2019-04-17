@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zengzhaoshang.dao.EStaffQueryMapper">
+  <cache/>
+  <resultMap id="BaseResultMap" type="cn.zengzhaoshang.dto.EStaffCustom">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="job_num" jdbcType="VARCHAR" property="jobNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="nations" jdbcType="VARCHAR" property="nations" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="political" jdbcType="VARCHAR" property="political" />
+    <result column="marriage" jdbcType="TINYINT" property="marriage" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="birth_place" jdbcType="VARCHAR" property="birthPlace" />
+    <result column="home" jdbcType="VARCHAR" property="home" />
+    <result column="mobile" jdbcType="CHAR" property="mobile" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="dept_id" jdbcType="CHAR" property="deptId" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="entry_date" jdbcType="DATE" property="entryDate" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	s.`id`, `job_num`, `name`, `sex`, `nations`, `birthday`, `political`, `marriage`, `school`, 
+    `education`, `birth_place`, `home`, `mobile`, `wechat`, `qq`, `dept_name`, `job`, `entry_date`, 
+    s.`version`, `dept_id`
+    FROM e_staff s , e_depart d
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE s.`id` = #{id,jdbcType=CHAR} AND s.`dept_id` = d.`id`
+  </select>
+  <select id="selectAll" parameterType="PageBean" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE s.`dept_id` = d.`id` ORDER BY `entry_date` DESC, `job_num` ASC
+    <if test="lc != null and ps != null">
+     LIMIT #{lc},#{ps}
+    </if>
+  </select>
+  <select id="selectRequire" parameterType="EStaffQueryVo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    <where>
+    	<if test="eStaffCustom != null">
+	    	<if test="eStaffCustom.jobNum != null and eStaffCustom.jobNum != ''">
+	    		and `job_num` like '%${eStaffCustom.jobNum}%'
+	    	</if>
+	    	<if test="eStaffCustom.name != null and eStaffCustom.name != ''">
+	    		and `name` like '%${eStaffCustom.name}%'
+	    	</if>
+	    	<if test="eStaffCustom.sex != null">
+	    		and `sex` = #{eStaffCustom.sex,jdbcType=TINYINT}
+	    	</if>
+	    	<if test="eStaffCustom.job != null and eStaffCustom.job != ''">
+	    		and `job` like '%${eStaffCustom.job}%'
+	    	</if>
+	    	<if test="eStaffCustom.entryDate != null">
+	    		and `entry_date` = #{eStaffCustom.entryDate,jdbcType=DATE}
+	    	</if>
+	    	<if test="eStaffCustom.deptName != null and eStaffCustom.deptName != ''">
+	    		and `dept_name` = #{eStaffCustom.deptName,jdbcType=VARCHAR}
+	    	</if>
+	    </if>
+	    and s.`dept_id` = d.`id`
+    </where>
+   	ORDER BY `entry_date` DESC, `job_num` ASC
+   	<if test="pageBean != null">
+   	  <if test="pageBean.lc != null and pageBean.ps != null">
+   		LIMIT #{pageBean.lc},#{pageBean.ps}
+   	  </if>
+   	</if>
+  </select>
+  <select id="countRequire" parameterType="EStaffQueryVo" resultType="int">
+    SELECT COUNT(*) FROM e_staff s , e_depart d
+    <where>
+    	<if test="eStaffCustom != null">
+	    	<if test="eStaffCustom.jobNum != null and eStaffCustom.jobNum != ''">
+	    		and `job_num` like '%${eStaffCustom.jobNum}%'
+	    	</if>
+	    	<if test="eStaffCustom.name != null and eStaffCustom.name != ''">
+	    		and `name` like '%${eStaffCustom.name}%'
+	    	</if>
+	    	<if test="eStaffCustom.sex != null">
+	    		and `sex` = #{eStaffCustom.sex,jdbcType=TINYINT}
+	    	</if>
+	    	<if test="eStaffCustom.job != null and eStaffCustom.job != ''">
+	    		and `job` like '%${eStaffCustom.job}%'
+	    	</if>
+	    	<if test="eStaffCustom.entryDate != null">
+	    		and `entry_date` = #{eStaffCustom.entryDate,jdbcType=DATE}
+	    	</if>
+	    	<if test="eStaffCustom.deptName != null and eStaffCustom.deptName != ''">
+	    		and `dept_name` = #{eStaffCustom.deptName,jdbcType=VARCHAR}
+	    	</if>
+	    </if>
+	    and s.`dept_id` = d.`id`
+    </where>
+  </select>
+</mapper>

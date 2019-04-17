@@ -1,0 +1,359 @@
+/*登录页面样式 开始*/
+.login_wrap{
+    background: url("../img/login.jpeg") no-repeat fixed;
+    background-size: cover;
+    min-height:73em;
+    font: normal 100% Helvetica, Arial, sans-serif;
+}
+.login_wrap .login_box{
+    width:50em;
+    height:22em;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    top:20em;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+}
+.login_wrap .login_box .sys_name{
+    line-height: 2em;
+    font-size: 3em;
+    font-family: Helvetica, ‘Hiragino Sans GB’, ‘NotoSansCJK-Black’, Arial, sans-serif;
+}
+.login_wrap .login_box .line{
+    width: 70%;
+    height: 0.2em;
+    /*将div变成线*/
+    background: #fff;
+    margin: 0 auto;
+}
+.login_wrap .login_box .input{
+    line-height: 2.5em;
+    font-size: 1.5em;
+    position: absolute;
+    top:5em;
+    left:145px;
+}
+input[type="submit"],input[type="reset"],input[type="button"]{background-color: #333;border: none;color: white;padding: 0.3em 1em;
+    text-decoration: none;cursor:pointer;font-size: 0.9em;height:2.2em;border-radius: 8px;outline: none}
+input[type="text"],input[type="password"],input[type="button"],textarea,select{border-radius:5px;}
+.login_wrap .login_box .input .sub{margin-top:0.3em;}
+.login_wrap .copyright{position:absolute;left:2em;bottom:1em;color:white;}
+td,th{padding:0.3em;}
+/*登录页面样式 结束*/
+/*管理界面样式 开始*/
+.admin_wrap{height:100%;width:100%;font: normal 100% Helvetica, Arial, sans-serif;}
+.admin_wrap .header{text-align:center;height:5em;background: #ffffff;}
+.admin_wrap .header ul li{float:left;font: normal 4em 迷你简隶变;padding-left:20px;padding-top:0.1em;}
+.admin_wrap .header ul li:last-child{float:right;padding-left:2px;font: normal 2.5em 迷你简隶变;padding-top:0.8em;}
+.admin_wrap .header ul li a:hover{color:red;}
+.admin_wrap .section{width:100%;height:100%;overflow-x:hidden;}
+/*字体*/
+@font-face{
+    font-family: '迷你简隶变';
+    src:url('../font/迷你简隶变.ttf') format('ttf');
+}
+@font-face{
+    font-family: 'NotoSansCJK-Black';
+    src:url('../font/NotoSansCJK-Black.ttc') format('ttc');
+}
+/*侧边导航样式 开始*/
+.admin_wrap .section .nav{position:absolute;min-height:70em;width:23em;color:#fff;background:#888;}
+.admin_wrap .section .nav .nav_title{
+    width:8em;
+    margin:0.6em auto;
+    /*font-size:1.5em;*/
+    /*font-family: Helvetica, ‘Hiragino Sans GB’, ‘NotoSansCJK-Black’, Arial, sans-serif;*/
+    font: normal 2em 幼圆;
+    letter-spacing: 0.2em;
+}
+.admin_wrap .section .nav .copyright{position:absolute;left:2em;bottom:1em;color:white;}
+/*见style.css*/
+/*侧边导航样式 结束*/
+/*右侧数据显示板块样式 开始*/
+.admin_wrap .section .content{min-height:70em;color:#777;background:#f5f5f5}
+/*管理界面首页*/
+.admin_wrap .section .content .admin_show{position:absolute;left:7.5em;top:5em;font:normal 5em 迷你简隶变;}
+/*错误提示页面*/
+.admin_wrap .section .content .error_show{position:absolute;left:12em;top:4em;font:normal 3em 迷你简隶变;}
+/*显示所有员工界面*/
+.admin_wrap .section .content .showAllPeo{position:relative;}
+.admin_wrap .section .content .showAllPeo .title{position:absolute;left:28em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showAllPeo table{background:white;position:absolute;left:26em;top:6em;}
+.showAllPeo table tr th,.showAllPeo table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showAllPeo table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showAllPeo table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showAllPeo th:nth-child(1){width:3em;}
+.showAllPeo th:nth-child(2){width:8em;}
+.showAllPeo th:nth-child(3){width:7em;}
+.showAllPeo th:nth-child(4){width:4em;}
+.showAllPeo th:nth-child(5){width:9em;}
+.showAllPeo th:nth-child(6){width:11em;}
+.showAllPeo th:nth-child(7){width:9em;}
+.showAllPeo th:nth-child(8){width:5em;}
+.admin_wrap .section .content .showAllPeo table a{color:#096acd;}
+.admin_wrap .section .content .showAllPeo table a:hover{color:orange;}
+.admin_wrap .section .content .showAllPeo .fixdown{position:absolute;left:35em;top:41em;font:normal 1.5em NotoSansCJK-Black;}
+/*根据条件查找员工*/
+.admin_wrap .section .content .showPeoByOne{position:relative;}
+.admin_wrap .section .content .showPeoByOne .title{position:absolute;left:25em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showPeoByOne .condition{position:absolute;left:22em;top:4em;font:normal 1.3em NotoSansCJK-Black;color:#666}
+.showPeoByOne .condition th,.showPeoByOne .condition td{height:2.5em;width:29em;text-align:left;}
+.showPeoByOne .condition td.sub input{background-color:#777;}
+.admin_wrap .section .content .showPeoByOne .list p{position:absolute;left:18em;top:10em;font:normal 2em NotoSansCJK-Black;}
+.admin_wrap .section .content .showPeoByOne .list table{background:white;position:absolute;left:26em;top:16em;}
+.showPeoByOne .list table tr th,.showPeoByOne .list table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showPeoByOne .list table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showPeoByOne .list table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showPeoByOne th:nth-child(1){width:3em;}
+.showPeoByOne th:nth-child(2){width:8em;}
+.showPeoByOne th:nth-child(3){width:7em;}
+.showPeoByOne th:nth-child(4){width:4em;}
+.showPeoByOne th:nth-child(5){width:9em;}
+.showPeoByOne th:nth-child(6){width:11em;}
+.showPeoByOne th:nth-child(7){width:9em;}
+.showPeoByOne th:nth-child(8){width:5em;}
+.admin_wrap .section .content .showPeoByOne .list table a{color:#096acd;}
+.admin_wrap .section .content .showPeoByOne .list table a:hover{color:orange;}
+.admin_wrap .section .content .showPeoByOne .list .fixdown{position:absolute;left:35em;top:44em;font:normal 1.5em NotoSansCJK-Black;}
+/*显示员工详细信息*/
+.section .content .showPeoDetail{position:relative;}
+.section .content .showPeoDetail .title{position:absolute;left:29em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .showPeoDetail .relative{position:absolute;left:27em;top:7em;}
+.section .content .showPeoDetail .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .showPeoDetail .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .showPeoDetail .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .showPeoDetail .border .title_two{position:absolute;left:3em;top:23em;}
+.section .content .showPeoDetail .border .text_two{position:absolute;left:3em;top:25em;}
+.showPeoDetail .text_one td:nth-child(odd),.showPeoDetail .text_two td:nth-child(odd){width:5em;height:2em;}
+.showPeoDetail .text_one td:nth-child(even),.showPeoDetail .text_two td:nth-child(even){width:20em;}
+/*添加员工信息*/
+.section .content .addPeo{position:relative;}
+.section .content .addPeo .title{position:absolute;left:29.8em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .addPeo .relative{position:absolute;left:27em;top:7em;}
+.section .content .addPeo .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .addPeo .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .addPeo .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .addPeo .border .title_two{position:absolute;left:3em;top:26em;}
+.section .content .addPeo .border .text_two{position:absolute;left:3em;top:28em;}
+.addPeo .text_one td:nth-child(odd),.addPeo .text_two td:nth-child(odd){width:5em;height:2.3em;}
+.addPeo .text_one td:nth-child(even),.addPeo .text_two td:nth-child(even){width:20em;}
+.addPeo .text_one input.long{width:35em;}
+.addPeo .text_two td:nth-child(even){text-align: center;}
+.addPeo .text_two input[type=submit]{background:#666}
+.addPeo .text_two input[type=button]{background:#666}
+.addPeo .text_one input[required]+span,.addPeo .text_one select[required]+span{color:red;}
+/*添加部门信息*/
+.section .content .addDepart{position:relative;}
+.section .content .addDepart .title{position:absolute;left:29.8em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .addDepart .relative{position:absolute;left:27em;top:7em;}
+.section .content .addDepart .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .addDepart .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .addDepart .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .addDepart .border .title_two{position:absolute;left:3em;top:12em;}
+.section .content .addDepart .border .text_two{position:absolute;left:3em;top:14em;}
+.addDepart .text_one td:nth-child(odd),.addDepart .text_two td:nth-child(odd){width:9em;height:2.3em;}
+.addDepart .text_one td:nth-child(even),.addDepart .text_two td:nth-child(even){width:20em;}
+.addDepart .text_one input.long{width:40em;}
+.addDepart .text_two td:nth-child(even){text-align: center;}
+.addDepart .text_two input[type=submit]{background:#666}
+.addDepart .text_two input[type=button]{background:#666}
+.addDepart .text_one input[required]+span,.addDepart .text_one select[required]+span{color:red;}
+/*显示所有部门界面*/
+.admin_wrap .section .content .showDepart{position:relative;}
+.admin_wrap .section .content .showDepart .title{position:absolute;left:28em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showDepart table{background:white;position:absolute;left:25em;top:6em;}
+.showDepart table tr th,.showDepart table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showDepart table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showDepart table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showDepart th:nth-child(1){width:3em;}
+.showDepart th:nth-child(2){width:4em;}
+.showDepart th:nth-child(3){width:6em;}
+.showDepart th:nth-child(4){width:25em;}
+.showDepart th:nth-child(5){width:6em;}
+.showDepart th:nth-child(6){width:5em;}
+.showDepart th:nth-child(7){width:5em;}
+.admin_wrap .section .content .showDepart table a{color:#096acd;}
+.admin_wrap .section .content .showDepart table a:hover{color:orange;}
+.admin_wrap .section .content .showDepart .fixdown{position:absolute;left:38em;top:43em;font:normal 1.5em NotoSansCJK-Black;}
+/*添加员工考勤记录*/
+.section .content .addCheck{position:relative;}
+.section .content .addCheck .title{position:absolute;left:28.2em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .addCheck .relative{position:absolute;left:27em;top:7em;}
+.section .content .addCheck .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .addCheck .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .addCheck .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .addCheck .border .title_two{position:absolute;left:3em;top:16em;}
+.section .content .addCheck .border .text_two{position:absolute;left:3em;top:18em;}
+.addCheck .text_one td:nth-child(odd),.addCheck .text_two td:nth-child(odd){width:9em;height:2.3em;}
+.addCheck .text_one td:nth-child(even),.addCheck .text_two td:nth-child(even){width:20em;}
+.addCheck .text_two td:nth-child(even){text-align: center;}
+.addCheck .text_two input[type=submit]{background:#666}
+.addCheck .text_two input[type=button]{background:#666}
+.addCheck .text_one input[required]+span,.addCheck .text_one select[required]+span{color:red;}
+/*显示员工考勤效绩达标规则制定结果*/
+.section .content .showRule{position:relative;}
+.section .content .showRule .title{position:absolute;left:26.8em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .showRule .relative{position:absolute;left:27em;top:7em;}
+.section .content .showRule .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .showRule .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .showRule .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .showRule .border .title_two{position:absolute;left:3em;top:12em;}
+.section .content .showRule .border .text_two{position:absolute;left:3em;top:14em;}
+.showRule .text_one td:nth-child(odd),.showRule .text_two td:nth-child(odd){width:12em;height:2em;}
+.showRule .text_one td:nth-child(even),.showRule .text_two td:nth-child(even){width:20em;}
+/*制定员工考勤效绩达标规则*/
+.section .content .addRule{position:relative;}
+.section .content .addRule .title{position:absolute;left:27.1em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .addRule .relative{position:absolute;left:27em;top:7em;}
+.section .content .addRule .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .addRule .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .addRule .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .addRule .border .title_two{position:absolute;left:3em;top:12em;}
+.section .content .addRule .border .text_two{position:absolute;left:3em;top:14em;}
+.addRule .text_one td:nth-child(odd),.addRule .text_two td:nth-child(odd){width:13em;height:3em;}
+.addRule .text_one td:nth-child(even),.addRule .text_two td:nth-child(even){width:20em;}
+.addRule .text_two td:nth-child(even){text-align: center;}
+.addRule .text_two input[type=submit]{background:#666}
+.addRule .text_two input[type=button]{background:#666}
+.addRule .text_one input[required]+span,.addRule .text_one select[required]+span{color:red;}
+/*上个月所有员工考勤信息*/
+.admin_wrap .section .content .showNowCheck{position:relative;}
+.admin_wrap .section .content .showNowCheck .title{position:absolute;left:28em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showNowCheck p{position:absolute;left:18em;top:5em;font:normal 2em NotoSansCJK-Black;}
+.admin_wrap .section .content .showNowCheck table{background:white;position:absolute;left:27em;top:6em;}
+.showNowCheck table tr th,.showNowCheck table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showNowCheck table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showNowCheck table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showNowCheck th:nth-child(1){width:3em;}
+.showNowCheck th:nth-child(2){width:9em;}
+.showNowCheck th:nth-child(3){width:9em;}
+.showNowCheck th:nth-child(4){width:10em;}
+.showNowCheck th:nth-child(5){width:12em;}
+.showNowCheck th:nth-child(6){width:6em;}
+.showNowCheck th:nth-child(7){width:5em;}
+.admin_wrap .section .content .showNowCheck table a{color:#096acd;}
+.admin_wrap .section .content .showNowCheck table a:hover{color:orange;}
+.admin_wrap .section .content .showNowCheck .fixdown{position:absolute;left:35em;top:41em;font:normal 1.5em NotoSansCJK-Black;}
+/*显示员工考勤详细信息*/
+.section .content .showCheckDetail{position:relative;}
+.section .content .showCheckDetail .title{position:absolute;left:29em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .showCheckDetail .relative{position:absolute;left:27em;top:7em;}
+.section .content .showCheckDetail .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .showCheckDetail .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .showCheckDetail .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .showCheckDetail .border .title_two{position:absolute;left:3em;top:18em;}
+.section .content .showCheckDetail .border .text_two{position:absolute;left:3em;top:20em;}
+.showCheckDetail .text_one td:nth-child(odd),.showCheckDetail .text_two td:nth-child(odd){width:10em;height:2em;}
+.showCheckDetail .text_one td:nth-child(even),.showCheckDetail .text_two td:nth-child(even){width:20em;}
+/*根据条件查找考勤记录*/
+.admin_wrap .section .content .showCheckByOne{position:relative;}
+.admin_wrap .section .content .showCheckByOne .title{position:absolute;left:25em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showCheckByOne .condition{position:absolute;left:22em;top:4em;font:normal 1.3em NotoSansCJK-Black;color:#666}
+.showCheckByOne .condition th,.showCheckByOne .condition td{height:2.5em;width:29em;text-align:left;}
+.showCheckByOne .condition td.sub input{background-color:#777;}
+.admin_wrap .section .content .showCheckByOne .list p{position:absolute;left:20em;top:10em;font:normal 2em NotoSansCJK-Black;}
+.admin_wrap .section .content .showCheckByOne .list table{background:white;position:absolute;left:27em;top:16em;}
+.showCheckByOne .list table tr th,.showCheckByOne .list table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showCheckByOne .list table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showCheckByOne .list table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showCheckByOne th:nth-child(1){width:3em;}
+.showCheckByOne th:nth-child(2){width:9em;}
+.showCheckByOne th:nth-child(3){width:9em;}
+.showCheckByOne th:nth-child(4){width:10em;}
+.showCheckByOne th:nth-child(5){width:12em;}
+.showCheckByOne th:nth-child(6){width:6em;}
+.showCheckByOne th:nth-child(7){width:5em;}
+.admin_wrap .section .content .showCheckByOne .list table a{color:#096acd;}
+.admin_wrap .section .content .showCheckByOne .list table a:hover{color:orange;}
+.admin_wrap .section .content .showCheckByOne .list .fixdown{position:absolute;left:35em;top:44em;font:normal 1.5em NotoSansCJK-Black;}
+/*添加、更新培训计划、招聘计划的页面*/
+.section .content .addTrain{position:relative;}
+.section .content .addTrain .title{position:absolute;left:28em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .addTrain .relative{position:absolute;left:27em;top:7em;}
+.section .content .addTrain .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:40em;margin:0 auto;position:relative;}
+.section .content .addTrain .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .addTrain .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .addTrain .border .title_two{position:absolute;left:3em;top:31em;}
+.section .content .addTrain .border .text_two{position:absolute;left:3em;top:33em;}
+.addTrain .text_one td:nth-child(odd),.addTrain .text_two td:nth-child(odd){width:6em;height:2.6em;}
+.addTrain .text_one td:nth-child(even),.addTrain .text_two td:nth-child(even){width:20em;}
+.addTrain .text_two td:nth-child(even){text-align: center;}
+.addTrain .text_two input[type=submit]{background:#666}
+.addTrain .text_two input[type=button]{background:#666}
+.addTrain .text_one input[required]+span,.addTrain .text_one textarea+span,.addTrain .text_one select[required]+span{color:red;}
+.addTrain .text_one input{width:13em;}
+/*显示培训计划和招聘计划列表界面*/
+.admin_wrap .section .content .showTrain{position:relative;}
+.admin_wrap .section .content .showTrain p{position:absolute;left:18em;top:5em;font:normal 2em NotoSansCJK-Black;}
+.admin_wrap .section .content .showTrain .title{position:absolute;left:25em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showTrain table{background:white;position:absolute;left:27em;top:6em;}
+.showTrain table tr th,.showTrain table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showTrain table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showTrain table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showTrain th:nth-child(1){width:3em;}
+.showTrain th:nth-child(2){width:9em;}
+.showTrain th:nth-child(3){width:22em;}
+.showTrain th:nth-child(4){width:15em;}
+.showTrain th:nth-child(5){width:5em;}
+.admin_wrap .section .content .showTrain table a{color:#096acd;}
+.admin_wrap .section .content .showTrain table a:hover{color:orange;}
+.admin_wrap .section .content .showTrain .fixdown{position:absolute;left:37em;top:40em;font:normal 1.5em NotoSansCJK-Black;}
+/*显示培训细节的页面*/
+.section .content .showTrainDetail{position:relative;}
+.section .content .showTrainDetail .title{position:absolute;left:29em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .showTrainDetail .relative{position:absolute;left:27em;top:7em;}
+.section .content .showTrainDetail .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:40em;margin:0 auto;position:relative;}
+.section .content .showTrainDetail .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .showTrainDetail .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .showTrainDetail .border .title_two{position:absolute;left:3em;top:32em;}
+.section .content .showTrainDetail .border .text_two{position:absolute;left:3em;top:34em;}
+.showTrainDetail .text_one td:nth-child(odd),.showTrainDetail .text_two td:nth-child(odd){width:8em;height:3em;}
+.showTrainDetail .text_one td:nth-child(even),.showTrainDetail .text_two td:nth-child(even){width:20em;}
+/*显示招聘细节的页面*/
+.section .content .showEmployDetail{position:relative;}
+.section .content .showEmployDetail .title{position:absolute;left:29em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .showEmployDetail .relative{position:absolute;left:27em;top:7em;}
+.section .content .showEmployDetail .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:40em;margin:0 auto;position:relative;}
+.section .content .showEmployDetail .border .title_one{position:absolute;left:3em;top:2em;}
+.section .content .showEmployDetail .border .text_one{position:absolute;left:3em;top:4em;}
+.section .content .showEmployDetail .border .title_two{position:absolute;left:3em;top:33em;}
+.section .content .showEmployDetail .border .text_two{position:absolute;left:3em;top:35em;}
+.showEmployDetail .text_one td:nth-child(odd),.showEmployDetail .text_two td:nth-child(odd){width:8em;height:3em;}
+.showEmployDetail .text_one td:nth-child(even),.showEmployDetail .text_two td:nth-child(even){width:20em;}
+/*显示所有账号界面*/
+.admin_wrap .section .content .showAccount{position:relative;}
+.admin_wrap .section .content .showAccount .title{position:absolute;left:28em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.admin_wrap .section .content .showAccount table{background:white;position:absolute;left:27em;top:6em;}
+.showAccount table tr th,.showAccount table tr td{border:0.2em solid #f5f5f5;}
+.admin_wrap .section .content .showAccount table tr th{text-align:left;height:3em;color:#555;font:bold 1.5em NotoSansCJK-Black;}
+.admin_wrap .section .content .showAccount table tr td{height:2em;font:normal 1.5em NotoSansCJK-Black;}
+.showAccount th:nth-child(1),.showAccount th:nth-child(2),.showAccount th:nth-child(3),.showAccount th:nth-child(4){width:13.5em;}
+.admin_wrap .section .content .showAccount table a{color:#096acd;}
+.admin_wrap .section .content .showAccount table a:hover{color:orange;}
+/*显示考勤达标统计*/
+.section .content .showCheckCount{position:relative;}
+.section .content .showCheckCount .title{position:absolute;left:28em;top:1em;font:bold 2.1em NotoSansCJK-Black;color:#555}
+.section .content .showCheckCount .relative{position:absolute;left:27em;top:7em;}
+.section .content .showCheckCount .border{border-top:0.7em solid blue;font:normal 1.5em NotoSansCJK-Black;
+    color:#555;background:white;min-width:54em;min-height:36em;margin:0 auto;position:relative;}
+.section .content .showCheckCount .border .title_one{position:absolute;left:3em;top:8em;}
+.section .content .showCheckCount .border .text_one{position:absolute;left:3em;top:10em;}
+.showCheckCount .text_one td:nth-child(odd),.showCheckCount .text_two td:nth-child(odd){width:15em;height:2em;}
+.showCheckCount .text_one td:nth-child(even),.showCheckCount .text_two td:nth-child(even){width:20em;}
+.admin_wrap .section .content .showCheckCount .condition{position:absolute;left:3em;top:1em;font:normal 1em NotoSansCJK-Black;color:#666}
+.showCheckCount .condition th,.showCheckCount .condition td{height:2.5em;width:29em;text-align:left;}
+.showCheckCount .condition input[type=submit]{background:#777}
+.showCheckCount .condition input[type=button]{background:#777}
+/*右侧数据显示板块样式 结束*/
+/*管理界面样式 结束*/

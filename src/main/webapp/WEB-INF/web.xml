@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- 指明spring配置文件位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext*.xml</param-value>
+	</context-param>
+	<!-- 配置spring监听器，让web项目启动时加载spring容器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- post乱码处理过滤器 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<!-- 加载前端控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param><!-- 加载相关的配置文件 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc/springmvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- *.action 或 /（使用RESTful风格的url防覆盖静态文件） 或 /*（不行，会覆盖jsp导致无法回显到jsp） -->
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+	<!-- 加载前端控制器，支持RESTful -->
+	<!-- <servlet> <servlet-name>springmvc_rest</servlet-name> <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
+		<init-param>加载相关的配置文件 <param-name>contextConfigLocation</param-name> <param-value>classpath:springmvc/springmvc.xml</param-value> 
+		</init-param> </servlet> -->
+
+	<!-- <servlet-mapping> <servlet-name>springmvc_rest</servlet-name> *.action 
+		或 /（使用RESTful风格的url防覆盖静态文件） 或 /*（不行，会覆盖jsp导致无法回显到jsp） <url-pattern>/</url-pattern> 
+		</servlet-mapping> -->
+
+	<display-name>epms</display-name>
+</web-app>

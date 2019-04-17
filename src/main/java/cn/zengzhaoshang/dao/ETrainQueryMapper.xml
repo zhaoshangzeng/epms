@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zengzhaoshang.dao.ETrainQueryMapper">
+  <cache/>
+  <resultMap id="BaseResultMap" type="cn.zengzhaoshang.dto.ETrainCustom">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="dept_name" jdbcType="CHAR" property="deptName" />
+    <result column="dept_id" jdbcType="CHAR" property="deptId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="teacher" jdbcType="VARCHAR" property="teacher" />
+    <result column="number" jdbcType="SMALLINT" property="number" />
+    <result column="outlay" jdbcType="VARCHAR" property="outlay" />
+    <result column="is_finish" jdbcType="TINYINT" property="isFinish" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="content" jdbcType="CLOB" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	t.`id`, `dept_name`, `name`, `date`, `place`, `teacher`, `number`, `outlay`, t.`version`,
+    `content`, `is_finish`, `dept_id`
+    FROM e_train t, e_depart d
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    WHERE t.`id` = #{id,jdbcType=CHAR} AND t.`dept_id` = d.`id`
+  </select>
+  <select id="selectAllNotDo" parameterType="cn.zengzhaoshang.dto.PageBean" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    WHERE t.`dept_id` = d.`id` AND `is_finish` = 0 ORDER BY `date` DESC
+    <if test="lc != null and ps != null">
+     LIMIT #{lc},#{ps}
+    </if>
+  </select>
+  <select id="countAllNotDo" resultType="int">
+    SELECT COUNT(*) FROM e_train t, e_depart d
+    WHERE t.`dept_id` = d.`id` AND `is_finish` = 0 ORDER BY `date` DESC
+  </select>
+  <select id="selectAllDo" parameterType="cn.zengzhaoshang.dto.PageBean" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    WHERE t.`dept_id` = d.`id` AND `is_finish` = 1 ORDER BY `date` DESC
+    <if test="lc != null and ps != null">
+     LIMIT #{lc},#{ps}
+    </if>
+  </select>
+  <select id="countAllDo" resultType="int">
+    SELECT COUNT(*) FROM e_train t, e_depart d
+    WHERE t.`dept_id` = d.`id` AND `is_finish` = 1 ORDER BY `date` DESC
+  </select>
+</mapper>

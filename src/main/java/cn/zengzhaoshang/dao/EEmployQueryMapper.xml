@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zengzhaoshang.dao.EEmployQueryMapper">
+  <cache/>
+  <resultMap id="BaseResultMap" type="cn.zengzhaoshang.dto.EEmployCustom">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="dept_id" jdbcType="CHAR" property="deptId" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="emp_num" jdbcType="SMALLINT" property="empNum" />
+    <result column="job_pay" jdbcType="VARCHAR" property="jobPay" />
+    <result column="emp_date" jdbcType="DATE" property="empDate" />
+    <result column="is_now_emp" jdbcType="TINYINT" property="isNowEmp" />
+    <result column="is_finish" jdbcType="TINYINT" property="isFinish" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="job_require" jdbcType="CLOB" property="jobRequire" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	e.`id`, d.`dept_name`, `job_name`, `emp_num`, `job_pay`, `dept_id`,
+    `emp_date`, `is_now_emp`, `job_require`,  e.`version`, `is_finish`
+    FROM e_employ e, e_depart d
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE e.`id` = #{id,jdbcType=CHAR} AND e.`dept_id` = d.`id`
+  </select>
+  <select id="selectAllNotDo" parameterType="cn.zengzhaoshang.dto.PageBean" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE e.`dept_id` = d.`id` AND `is_finish` = 0 ORDER BY `emp_date` DESC
+    <if test="lc != null and ps != null">
+     LIMIT #{lc},#{ps}
+    </if>
+  </select>
+  <select id="countAllNotDo" resultType="int">
+    SELECT COUNT(*) FROM e_employ e, e_depart d
+    WHERE e.`dept_id` = d.`id` AND `is_finish` = 0 ORDER BY `emp_date` DESC
+  </select>
+  <select id="selectAllDo" parameterType="cn.zengzhaoshang.dto.PageBean" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    WHERE e.`dept_id` = d.`id` AND `is_finish` = 1 ORDER BY `emp_date` DESC
+    <if test="lc != null and ps != null">
+     LIMIT #{lc},#{ps}
+    </if>
+  </select>
+  <select id="countAllDo" resultType="int">
+    SELECT COUNT(*) FROM e_employ e, e_depart d
+    WHERE e.`dept_id` = d.`id` AND `is_finish` = 1 ORDER BY `emp_date` DESC
+  </select>
+</mapper>
